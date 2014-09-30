@@ -1,0 +1,38 @@
+--make objects
+
+dict={(0,0): {(neighbor1-tuple):(distnbr1-float),{(neighbor2--tup):)distneigh2--float)
+	(neighbor2-tup):
+
+
+dict[(0,0)][(neighbor2)]
+
+--or not
+
+class point: 
+	generates points named pxy
+	atributes:
+		neighbors
+		distance to neighbors
+		
+		checked or not --boolean
+		in shortest pathe -- boolean
+
+point.p01(neighbors)
+
+filepath=/home/comprobo/exa
+
+def read_i_ things()
+	read.filepath
+	parse out relevent data
+
+	make_obj_from_prsd_dta(x,y) #x and y cordinates of point object is being made from
+
+
+
+
+
+
+def make_obj_from_prsd_dta():
+	pxy=point((x,y),(xn1,yn1),
+
+
