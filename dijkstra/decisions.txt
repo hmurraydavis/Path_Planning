@@ -3,11 +3,24 @@
 **Only representing traversable nodes
 *************************
 
+MAP FILES:
+CSV files of form:
+
+	0,0,0,1,1,1
+	1,1,1,1,1,1
+	1,1,1,1,0,0
+1 is a place where it can go, 0 is a place where it can't.
+3 is the starting position of the robot. 
+4 is the goal
+
 DICTIONARIES FOR NODES:
 Format:
     dict={(pt1):{(neighbor1):dist, (neighbor2):dist2, ect....}
 
+*************************
 
+OUTPUT:
+Array od Poses. This represents a path for the robot to follow
 
 
 OLD IDEATION:
