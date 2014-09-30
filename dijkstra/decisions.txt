@@ -1,4 +1,16 @@
---make objects
+*************************
+**Going to use nested dictionaries to represent map
+**Only representing traversable nodes
+*************************
+
+DICTIONARIES FOR NODES:
+Format:
+    dict={(pt1):{(neighbor1):dist, (neighbor2):dist2, ect....}
+
+
+
+
+OLD IDEATION:
 
 dict={(0,0): {(neighbor1-tuple):(distnbr1-float),{(neighbor2--tup):)distneigh2--float)
 	(neighbor2-tup):
