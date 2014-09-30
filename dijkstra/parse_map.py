@@ -2,7 +2,7 @@
 
 import csv
 
-map_path='/home/comprobo/Path_Planning/dijkstra/map1ex.txt'
+map_path='/home/comprobo/Path_Planning/dijkstra/map2ex.txt'
 
 #map = open(map_path, 'r')
 
@@ -22,7 +22,10 @@ for x, x_items in enumerate(data):
 			     (x-1,y-1),
 			     (x+1,y-1),
 			     (x-1,y+1)]
-	print potential_neighbors
-        #for neighbor in potential_neighbors:
- 
+        for neighbor in potential_neighbors:
+            xn,yn=neighbor
+            if ((xn>=0) and (yn>=0) and (xn<=len(x_items)) and (yn<=len(data))):
+                if (data[xn][yn]>0): #1 is traversable, 0 is not
+                    neighbors.append((xn,yn))
+            print 'neighbors of (',x,',',y,') are: ',neighbors
 #	map={tuple(x,y):
