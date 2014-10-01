@@ -12,8 +12,7 @@ with open(map_path, 'Ur') as f:
 
 #parse the resulting thing
 for y, x_items in enumerate(data):
-    for x, location in enumerate(x_items):
-        print 'loc: ',location
+    for x, map_value_for_square in enumerate(x_items):
         print 'x: ', x
         print 'x items: ', x_items
         print 'y: ',y,'\n'
@@ -29,8 +28,8 @@ for y, x_items in enumerate(data):
         for neighbor in potential_neighbors:
             xn, yn = neighbor
             if ((xn>=0) and (yn>=0) and (yn<len(x_items)) and (xn<len(data))):
-		#print (xn, yn), data[xn][yn]
-                if (data[xn][yn]>0): #1 is traversable, 0 is not
+		print (x, y), map_value_for_square
+                if (map_value_for_square>0): #1 is traversable, 0 is not
                     neighbors.append((xn,yn))
             #print 'neighbors of (',x,',',y,') are: ',neighbors
 #	map={tuple(x,y):
