@@ -2,7 +2,7 @@
 
 import csv
 
-map_path='/home/comprobo/Path_Planning/dijkstra/map1ex.txt'
+map_path='/home/jasper/comprobo2014/Path_Planning/dijkstra/map1ex.txt'
 
 #map = open(map_path, 'r')
 
