@@ -1,0 +1,63 @@
+*************************
+**Going to use nested dictionaries to represent map
+**Only representing traversable nodes
+*************************
+
+MAP FILES:
+CSV files of form:
+
+	0,0,0,1,1,1
+	1,1,1,1,1,1
+	1,1,1,1,0,0
+1 is a place where it can go, 0 is a place where it can't.
+3 is the starting position of the robot. 
+4 is the goal
+
+DICTIONARIES FOR NODES:
+Format:
+    dict={(pt1):{(neighbor1):dist, (neighbor2):dist2, ect....}
+
+*************************
+
+OUTPUT:
+Array od Poses. This represents a path for the robot to follow
+
+
+OLD IDEATION:
+
+dict={(0,0): {(neighbor1-tuple):(distnbr1-float),{(neighbor2--tup):)distneigh2--float)
+	(neighbor2-tup):
+
+
+dict[(0,0)][(neighbor2)]
+
+--or not
+
+class point: 
+	generates points named pxy
+	atributes:
+		neighbors
+		distance to neighbors
+		
+		checked or not --boolean
+		in shortest pathe -- boolean
+
+point.p01(neighbors)
+
+filepath=/home/comprobo/exa
+
+def read_i_ things()
+	read.filepath
+	parse out relevent data
+
+	make_obj_from_prsd_dta(x,y) #x and y cordinates of point object is being made from
+
+
+
+
+
+
+def make_obj_from_prsd_dta():
+	pxy=point((x,y),(xn1,yn1),
+
+
