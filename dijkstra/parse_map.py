@@ -29,7 +29,7 @@ space={} #initialize the dictionary, representing thetraverable space of nodes
 for y, x_items in enumerate(data):
     for x, map_value_for_square in enumerate(x_items):
         if (map_value_for_square>0): #1 is traverseable, 0 is not
-            neighbors=[]
+            neighbors={}
             potential_neighbors=[(x+1,y),
 			         (x-1,y),
 			         (x,y+1),
@@ -43,7 +43,10 @@ for y, x_items in enumerate(data):
                 if ((xn>=0) and (yn>=0) 
                      and (xn<len(x_items)) and (yn<len(data))): #check if it's in bounds of the map
                      if data[yn][xn]>0: #check if it's traversable. Data is read in backwards, so data[yn][xn] is correct.
-                         neighbors.append((xn,yn))
-
+                         neighbors[(xn,yn)]=distance_between_neighbors((x,y),(xn,yn))
+                         
             #construct dictionary of point and its neighbors!
-            space[(x,y)]={}
+	    space[(x,y)] = neighbors
+
+
+
