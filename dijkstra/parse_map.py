@@ -25,8 +25,7 @@ for y, x_items in enumerate(data):
 			     (x-1,y+1)]
             for neighbor in potential_neighbors:
                 xn, yn = neighbor
-                if ((data[xn][yn]>0) and (xn>=0) and (yn>=0) and (xn<len(x_items)) and (yn<len(data))):
-		     print (xn,yn), data[yn][xn]
-                #print (x, y), map_value_for_square
-                neighbors.append((xn,yn))
-            #print 'neighbors of (',x,',',y,') are: ',neighbors
+                if ((xn>=0) and (yn>=0) 
+                     and (xn<len(x_items)) and (yn<len(data))): #check if it's in bounds of the map
+                     if data[yn][xn]>0: #check if it's traversable. Data is read in backwards, so data[yn][xn] is correct.
+                         neighbors.append((xn,yn))
