@@ -20,7 +20,7 @@ Format:
 *************************
 
 OUTPUT:
-Array od Poses. This represents a path for the robot to follow
+Array of Poses. This represents a path for the robot to follow
 
 
 OLD IDEATION:
