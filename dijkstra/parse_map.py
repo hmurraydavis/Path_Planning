@@ -53,13 +53,18 @@ def make_space_dict():
 
 print 'space is: ',make_space_dict()
 
-def dijkSort(origin,goal):
-    space=make_space_dict()
-    traversed=set()
+def initalDjk(orgin, goal):
+    space=make_space_dict() #make map from file
+    nodesVisited=set(orgin)
+    dist_st_to_nodes={orgin:0}
+    node_progressions={orgin:orgin}
+    dijkstraR(space, orgin, goal, nodesVisited, dist_st_to_nodes, node_progressions) 
 
-    for child in space[orgin]:
-        if child not in traversed:
-            
-            new_dist = currectdist + node_dis
+def dijkstraR(space, currentNode, goal, nodesVisited, dist_st_to_nodes, node_progressions):
+    for child in space[currentNode]:
+        if child not in traversed: #if the edge hasn't been checked, check it
+            checkDist=dist_st_to_nodes[currentNode]+space[currentNode][child]
+            if dist_st_to_nodes[child] > checkDist: #update path if it's a shorter route
+                dist_st_to_nodes[child] = checkDist
             
             
