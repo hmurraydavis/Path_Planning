@@ -1,3 +1,4 @@
+#obtained from: http://www.ics.uci.edu/~eppstein/161/python/priodict.py
 # Priority dictionary using binary heaps
 # David Eppstein, UC Irvine, 8 Mar 2002
 
