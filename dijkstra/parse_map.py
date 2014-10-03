@@ -64,7 +64,9 @@ def dijkstraR(space, currentNode, goal, nodesVisited, dist_st_to_nodes, node_pro
     for child in space[currentNode]:
         if child not in traversed: #if the edge hasn't been checked, check it
             checkDist=dist_st_to_nodes[currentNode]+space[currentNode][child]
-            if dist_st_to_nodes[child] > checkDist: #update path if it's a shorter route
+            if dist_st_to_nodes[child] > checkDist: #update path if shorter route
                 dist_st_to_nodes[child] = checkDist
+                node_progressions[child]=currentNode
+        nodesVisited.add(currentNode)
             
             
