@@ -53,15 +53,13 @@ def make_space_dict():
 
 print 'space is: ',make_space_dict()
 
-def dijkSort(orgin,goal):
+def dijkSort(origin,goal):
     space=make_space_dict()
-    traversed={}
-    notTraversed={}
-    shortestPath={}
+    traversed=set()
 
-    for node in space[orgin]:
-        if node not in traversed:
-            print 'hi'
+    for child in space[orgin]:
+        if child not in traversed:
             
+            new_dist = currectdist + node_dis
             
             
