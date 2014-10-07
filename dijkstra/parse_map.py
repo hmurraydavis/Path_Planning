@@ -71,9 +71,10 @@ def dijkstraR(space, currentNode, goal, nodesVisited, dist_st_to_nodes, node_pro
                 dist_st_to_nodes[child] = checkDist
                 node_progressions[child]=currentNode
         nodesVisited.add(currentNode)
-        print '\n To traverse:',
-        TraverseNext = sorted(dist_st_to_nodes)
-        pprint.pprint(TraverseNext)
+    print '\n To traverse:',
+    TraverseNext = sorted(dist_st_to_nodes.items())
+
+    pprint.pprint(TraverseNext)
 
 initalDjk((0,0), (2,2))
 
