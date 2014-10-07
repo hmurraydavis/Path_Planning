@@ -1,6 +1,7 @@
 #PARSE THE CSV, BINARY (0 OR 1), *.TXT MAP FILE:
 
 import csv
+import pprint
 
 def read_csv(map_path):
     '''Opens and reads in CSV files. These represent the map of the
@@ -51,22 +52,44 @@ def make_space_dict():
 		    space[(x,y)] = neighbors
 	return space
 
-print 'space is: ',make_space_dict()
+print 'space is: ',
+pprint.pprint(make_space_dict())
 
-def initalDjk(orgin, goal):
+def initalDjk(origin, goal):
     space=make_space_dict() #make map from file
-    nodesVisited=set(orgin)
-    dist_st_to_nodes={orgin:0}
-    node_progressions={orgin:orgin}
-    dijkstraR(space, orgin, goal, nodesVisited, dist_st_to_nodes, node_progressions) 
+    nodesVisited=set(origin)
+    dist_st_to_nodes={origin:0}
+    node_progressions={origin:origin}
+    dijkstraR(space, origin, goal, nodesVisited, dist_st_to_nodes, node_progressions) 
 
 def dijkstraR(space, currentNode, goal, nodesVisited, dist_st_to_nodes, node_progressions):
     for child in space[currentNode]:
-        if child not in traversed: #if the edge hasn't been checked, check it
+        if child not in nodesVisited: #if the edge hasn't been checked, check it
             checkDist=dist_st_to_nodes[currentNode]+space[currentNode][child]
-            if dist_st_to_nodes[child] > checkDist: #update path if shorter route
+            if dist_st_to_nodes.get(child, float('inf')) > checkDist: #update path if shorter route
+		print currentNode
                 dist_st_to_nodes[child] = checkDist
                 node_progressions[child]=currentNode
         nodesVisited.add(currentNode)
-            
-            
+        print '\n To traverse:',
+        TraverseNext = sorted(dist_st_to_nodes)
+        pprint.pprint(TraverseNext)
+
+initalDjk((0,0), (2,2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
