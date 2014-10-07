@@ -1,6 +1,5 @@
 import time
-import bank
-from Forebrain import Forebrain
+from go_to_waypoints import Forebrain
 
 forebrain=Forebrain()
 
@@ -46,7 +45,8 @@ def missionMannager(mission): #mission is a list of dictionaries
 			pt1 = mis['pt1']
 			print 'pt1 is:', pt1
 			pt2 = mis['pt2']
-			currentPos=forebrain.readPosition()
+			#TODO: Give it the robot's current heading:
+			currentPos=45
 			distToPt=distBtwnPts(currentPos, mis['pt2'])
 			print 'Dist between pts: ',distToPt
 			while distToPt>=0.00002:
@@ -56,7 +56,8 @@ def missionMannager(mission): #mission is a list of dictionaries
 			for t in range (0,2*mis['time']):
 				forebrain.obsAvoid()
 		elif mis['mode']=='go to point':
-			currentPos=forebrain.readPosition()
+			#TODO:Give it the robot's current position
+			currentPos=(2,3)
 			while distBtwnPts(currentPos, mis['pt']) >= 0.00002:
 				forebrain.goToPoint(mis['pt'])
 				time.sleep(.25)

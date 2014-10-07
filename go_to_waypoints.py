@@ -43,8 +43,9 @@ class Forebrain:
 
 	def goToPoint(self,pt):
 		# '''outputs the necessary, global heading in order to go toward a point'''
-
-		currentHeading = self.midbrain.readHeading()
+		
+		#TODO: Give it the robot's current heading
+		currentHeading = 45
 		headingtoPoint=self.headingToPoint(pt)
 		print 'currentHeading' +str(currentHeading)
 		print 'headingtoPoint' +str(headingtoPoint)
