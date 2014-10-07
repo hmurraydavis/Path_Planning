@@ -1,10 +1,10 @@
 import math
 #import bank #delete when final
-from Midbrain import Midbrain
 
 class Forebrain:	
 	def __init__(self):
-		self.midbrain=Midbrain()	
+                #init things here. Now depricated
+                pass
 	
 	## Going to ppoints!
 	def slope(self,p2,p1):
@@ -17,7 +17,8 @@ class Forebrain:
 	def headingToPoint(self,posDesired):
 		#'''gives the heading (angle in degrees from the +x axis) of the line to be followed'''
 
-		posCurrent = self.midbrain.readPosition() #robot's current position
+		#TODO: give robot its current position:
+		posCurrent = (2,3) #robot's current position
 		m=self.slope(posDesired,posCurrent)
 		angle=math.degrees(math.atan(m/1))
 
@@ -92,7 +93,8 @@ class Forebrain:
 		#tested to work at 13:14 on 6/11/14
 		# Based on: http://math.stackexchange.com/questions/324589/detecting-whether-a-point-is-above-or-below-a-slope'''
 
-		posCurrent = self.midbrain.readPosition()
+		#TODO: give the robot it's current position
+		posCurrent = (2,3)
 		m=self.slope(posDesired, linstart)
 		b=posDesired[1]-(m*posDesired[0])
 		check=m*posCurrent[0]+b
@@ -110,10 +112,12 @@ class Forebrain:
 	def followLine(self,linstart,posDesired):
 		# '''Outputs the necessary, global heading for the robot to follow a line with specified endpoints'''
 		
-		posCurrent=self.midbrain.readPosition()
+		#TODO: give it the robot's position
+		posCurrent=(2,3)
 		bot_posVlin=self.above_below_on_line(posCurrent,linstart,posDesired)
 		lineheading=self.heading_line(linstart,posDesired)
-		botheading = self.midbrain.readHeading()
+		#TODO: Read in the current heading of the robot
+		botheading = 45
 		print 'Line heading: '+str(lineheading)
 		print 'Bot heading: '+str(botheading)
 		print 'bot_posVlin', bot_posVlin
@@ -145,15 +149,7 @@ class Forebrain:
 	
 if __name__=='__main__':
 	FB=Forebrain()
-	FB.readPosition()
-	FB.obsAvoid()
-	FB.mtnHeading(45)
 	FB.followLine([3,4],[1,0]) #followLine(self,posCurrent,linstart,posDesired):
 	FB.above_below_on_line([3,4],[1,0],[9,10])
 	FB.heading_line([1,0],[9,10]) #heading_line(self,linstart,posDesired)
 	FB.headingToPoint([9,10])
-	FB.setSails()
-	
-	#print ("test 1:")
-	#FB.test1()
-	
