@@ -52,9 +52,6 @@ def make_space_dict():
 		    space[(x,y)] = neighbors
 	return space
 
-print 'space is: ',
-pprint.pprint(make_space_dict())
-
 def initalDjk(origin, goal):
     space=make_space_dict() #make map from file
     nodesVisited=set(origin)
@@ -67,14 +64,24 @@ def dijkstraR(space, currentNode, goal, nodesVisited, dist_st_to_nodes, node_pro
         if child not in nodesVisited: #if the edge hasn't been checked, check it
             checkDist=dist_st_to_nodes[currentNode]+space[currentNode][child]
             if dist_st_to_nodes.get(child, float('inf')) > checkDist: #update path if shorter route
-		print currentNode
+		#print currentNode
                 dist_st_to_nodes[child] = checkDist
                 node_progressions[child]=currentNode
         nodesVisited.add(currentNode)
-    print '\n To traverse:',
     TraverseNext = sorted(dist_st_to_nodes.items())
-
+    print '\n To traverse:',
     pprint.pprint(TraverseNext)
+
+    #Recurse over the children search front, starting with the current shortest path
+    for node,dist_to_node_fm_st in TraverseNext:
+        if node != goal:
+            print 'node is: ',node
+            dijkstraR(space, node, goal, nodesVisited, dist_st_to_nodes, node_progressions)
+        else: 
+            print 'victory! All is not lost in the world! You won!' 
+
+print 'space is: ',
+pprint.pprint(make_space_dict())
 
 initalDjk((0,0), (2,2))
 
