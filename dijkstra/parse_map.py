@@ -2,6 +2,7 @@
 
 import csv
 import pprint
+d = 0
 
 def read_csv(map_path):
     '''Opens and reads in CSV files. These represent the map of the
@@ -24,7 +25,7 @@ def distance_between_neighbors(pt1,pt2):
 
 
 def make_space_dict():
-	data = read_csv('map2ex.txt')
+	data = read_csv('map1ex.txt')
 
 	space={} #initialize the dictionary, representing thetraverable space of nodes
 
@@ -52,52 +53,46 @@ def make_space_dict():
 		    space[(x,y)] = neighbors
 	return space
 
-def initalDjk(origin, goal):
+def dijkstra(origin, goal):
     space=make_space_dict() #make map from file
-    nodesVisited=set(origin)
-    dist_st_to_nodes={origin:0}
-    node_progressions={origin:origin}
-    dijkstraR(space, origin, goal, nodesVisited, dist_st_to_nodes, node_progressions) 
+    nodesVisited=set((origin,))
+    node_dists={origin:0}
+    node_progressions={}
+    return dijkstraR(space, origin, goal, nodesVisited, node_dists, node_progressions) 
 
-def dijkstraR(space, currentNode, goal, nodesVisited, dist_st_to_nodes, node_progressions):
+def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressions):
+    if currentNode == goal:
+        node_path = []
+        end_of_path = currentNode
+        while end_of_path != False:
+            node_path.append(end_of_path)
+            end_of_path = node_progressions.get(end_of_path, False)
+
+        print 'you are winnerr'
+        return list(reversed(node_path))
+
     for child in space[currentNode]:
         if child not in nodesVisited: #if the edge hasn't been checked, check it
-            checkDist=dist_st_to_nodes[currentNode]+space[currentNode][child]
-            if dist_st_to_nodes.get(child, float('inf')) > checkDist: #update path if shorter route
-		#print currentNode
-                dist_st_to_nodes[child] = checkDist
+            #if child == goal: return
+            checkDist=node_dists[currentNode]+space[currentNode][child]
+            if node_dists.get(child, float('inf')) > checkDist: #update path if shorter route
+                node_dists[child] = checkDist
                 node_progressions[child]=currentNode
-        nodesVisited.add(currentNode)
-    TraverseNext = sorted(dist_st_to_nodes.items())
-    print '\n To traverse:',
-    pprint.pprint(TraverseNext)
+    nodesVisited.add(currentNode)
+
+    traverseNext = sorted(node_dists.items(), key=node_dists.get)
+    #print '\n To traverse:', pprint.pprint(traverseNext)
+
+    sorted_nodes = [node for node, _ in traverseNext if node not in nodesVisited]
+    if not len(sorted_nodes):
+        print 'no more nodes to visit'
+        return
+    else:
+        closest_node = sorted_nodes[0]
+        print 'closest:', closest_node
 
     #Recurse over the children search front, starting with the current shortest path
-    for node,dist_to_node_fm_st in TraverseNext:
-        if node != goal:
-            print 'node is: ',node
-            dijkstraR(space, node, goal, nodesVisited, dist_st_to_nodes, node_progressions)
-        else: 
-            print 'victory! All is not lost in the world! You won!' 
+    print 'closest node is: ',closest_node
+    return dijkstraR(space, closest_node, goal, nodesVisited, node_dists, node_progressions)
 
-print 'space is: ',
-pprint.pprint(make_space_dict())
-
-initalDjk((0,0), (2,2))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print dijkstra((0,0), (0,4))
