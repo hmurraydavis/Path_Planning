@@ -12,9 +12,8 @@ def BuildList():
 	mission=[]
 	
 	for mode in range (number_of_modes):
-		if mode=='go to point':
-			pt=raw_input('GPS coordinates of point (in parenthesis:())? ')
-			mission.append(['go to point',pt])
+        pt=raw_input('GPS coordinates of point (in parenthesis:())? ')
+        mission.append(['go to point',pt])
 	print 'Mission is:', mission
 	
 def missionMannager(mission): #mission is a list of dictionaries
@@ -24,7 +23,7 @@ def missionMannager(mission): #mission is a list of dictionaries
 		if mis['mode']=='go to point':
 			#TODO:Give it the robot's current position
 			currentPos=(2,3)
-			while distBtwnPts(currentPos, mis['pt']) >= 0.00002:
+			while distBtwnPts(currentPos, mis['pt']) >= 0.2:
 				forebrain.goToPoint(mis['pt'])
 				time.sleep(.25)
 missionT=[
