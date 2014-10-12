@@ -1,0 +1,4 @@
+digraph G {
+"odom" -> "base_link"[label="Broadcaster: /neato\nAverage rate: 5.206 Hz\nMost recent transform: 1413048652.725 \nBuffer length: 4.802 sec\n"];
+"base_link" -> "base_laser_link"[label="Broadcaster: /laser_to_base\nAverage rate: 20.138 Hz\nMost recent transform: 1413048652.927 \nBuffer length: 4.916 sec\n"];
+}
