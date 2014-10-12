@@ -1,5 +1,6 @@
 Be sure to:
 ln -s path_to_your_github_repo/src/my_pf ~/catkin_ws/src
+ln -s path_to_your_github_repo/src/hector_slam ~/catkin_ws/src
 
 To use localize robot on map:
 
