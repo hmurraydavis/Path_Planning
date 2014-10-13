@@ -1,9 +1,14 @@
 Be sure to:
 ln -s path_to_your_github_repo/my_pf ~/catkin_ws/src
 ln -s path_to_your_github_repo/hector_slam ~/catkin_ws/src
+ln -s path_to_your_github_repo/geomtery ~/catkin_ws/src
+
+/home/jasper/comprobo2014/src
+
 
 In ~/catkin_ws/src, run:
 catkin_make
+catkin_make install
 
 To use localize robot on map:
 
