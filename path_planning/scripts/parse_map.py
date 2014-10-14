@@ -88,7 +88,7 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
             xnode,ynode=node
             xdesired_paths.append(xnode)
             ydesired_paths.append(ynode)
-        xdesired_paths=Int16MultiArray(xdesired_paths)
+#        xdesired_paths=Int16MultiArray(xdesired_paths)
         print 'x desired nodes: ',xdesired_paths
         print 'ydesired_paths: ', ydesired_paths
 
