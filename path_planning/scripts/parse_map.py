@@ -71,7 +71,7 @@ def dijkstra(origin, goal,pub):
     return dijkstraR(space, origin, goal, nodesVisited, node_dists, node_progressions,pub) 
 
 def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressions,pub):
-    print 'in DijkstraR function'
+#    print 'in DijkstraR function'
     if currentNode == goal:
         node_path = []
         end_of_path = currentNode
@@ -103,10 +103,10 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
         return
     else:
         closest_node = sorted_nodes[0]
-        print 'closest:', closest_node
+#        print 'closest:', closest_node
 
     #Recurse over the children search front, starting with the current shortest path
-    print 'closest node is: ',closest_node
+    #print 'closest node is: ',closest_node
     return dijkstraR(space, closest_node, goal, nodesVisited, node_dists, node_progressions,pub)
 
 def read_in_map(msg):
@@ -123,7 +123,7 @@ def read_in_map(msg):
     
 def startupSequence():
     try:
-#        rospy.init_node('test', anonymous=True)
+        rospy.init_node('robot_direct', anonymous=True)
         global pub
         pub = rospy.Publisher('waypoint_list', String)
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
@@ -135,16 +135,16 @@ def get_list_of_waypoints():
     dijkstra((0,0),(3,4),pub)
     
 
-if __name__ == '__main__':
-    '''Initializes ROS processes and controls the state of the robot once 
-    indivigual behaviors yield controls
-    INPUT: none
-    OUTPUT: none'''
-    try:
-        rospy.init_node('test', anonymous=True)
-        global pub
-        pub = rospy.Publisher('waypoint_list', String)
-        sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
-        print 'called dijkstra'
-        get_list_of_waypoints() #TODO: make it the actual goal and starting location
-    except rospy.ROSInterruptException: pass
+#if __name__ == '__main__':
+#    '''Initializes ROS processes and controls the state of the robot once 
+#    indivigual behaviors yield controls
+#    INPUT: none
+#    OUTPUT: none'''
+#    try:
+#        rospy.init_node('robot_direct', anonymous=True)
+#        global pub
+#        pub = rospy.Publisher('waypoint_list', String)
+#        sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
+#        print 'called dijkstra'
+#        get_list_of_waypoints() #TODO: make it the actual goal and starting location
+#    except rospy.ROSInterruptException: pass
