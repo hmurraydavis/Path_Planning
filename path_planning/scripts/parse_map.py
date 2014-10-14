@@ -117,7 +117,7 @@ def read_in_map(msg):
 
     print 'read in map and in map read in function'
     global mapSpace
-    pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
+    #pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
     
     mapSpace=msg
     
@@ -125,7 +125,9 @@ def startupSequence():
     try:
         rospy.init_node('robot_direct', anonymous=True)
         global pub
+        print 'started waypoint list'
         pub = rospy.Publisher('waypoint_list', String)
+        print 'ending waypoint list'
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
         print 'called dijkstra'
     except rospy.ROSInterruptException: pass
