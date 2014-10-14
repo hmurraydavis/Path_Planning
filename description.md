@@ -32,15 +32,18 @@ Given desired heading and current direction, we use proportional control to comm
 #### Waypoint Check-off
 The robot keeps track of its current waypoint. When it detects that it is close to its waypoint, it directs itself to the next waypoint. If there are no waypoints, the robot stays in place. 
 
-### Design decision
-Describe a design decision you had to make when working on your project and what you ultimately did (and why)?  These design decisions could be particular choices for how you implemented some part of an algorithm or perhaps a decision regarding which of two external packages to use in your project.
+### Design Decision/ Code Structure
 
-### How did you structure your code?
+We've added combined the scripts that we worked on into one directory. In addition, we established that one script would import the other and call its methods. This script was the path follower, which imported the path planner. Due to this establishment, we were able to gather information from the path planner before calling the path follower. This code flow made sense logically. At one point, we were considering having the path planner publish to a node that the path follower would subscribe to. However, the path planner takes time to run, which would likely cause problems in following waypoints for the path follower.
 
-The code structure was largely object
+### Challenges
 
-### What if any challenges did you face along the way?
+We wished we had allocated more time into integrating the code, because during that process, we came across several bugs, which were larger problems than we had expected. For instance, we wanted our path planning code to publish to a node, but to be able to publish to a node, it needed to be casted into a select amount of data types. We had originally tried to publish an array of tuples of waypoints but spent hours looking through documentation and debugging to get waypoints published. In the end, we decided on publishing a string of etc.
 
-### What would you do to improve your project if you had more time?
+### Future
+In addition to the graphic of the estimated current position and heading, it would be great to visualize the path of the robot. That way, it would be easy to see how far off our robot is from the path and how it is deviating. 
 
-### Did you learn any interesting lessons for future robotic programming projects?  These could relate to working on robotics projects in teams, working on more open-ended (and longer term) problems, or any other relevant topic.
+### Interesting Lessons
+
+We found that it is important to dedicate more time towards integration in future robotic programming projects.
+
