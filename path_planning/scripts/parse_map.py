@@ -120,6 +120,10 @@ def read_in_map(msg):
 
     print 'read in map and in map read in function'
     global mapSpace
+    nparray = np.array(msg)
+    nparray.resize(512,512)
+    #print msg
+    mapSpace=nparray
     #pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
     
     mapSpace=msg
