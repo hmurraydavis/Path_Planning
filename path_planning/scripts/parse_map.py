@@ -9,15 +9,6 @@ from nav_msgs.msg import OccupancyGrid
 global pub
 print 'test'
 
-try:
-    print 'starting a node'
-    rospy.init_node('waypoint_list', anonymous=True)
-    print 'started a node'
-    global pub
-    pub = rospy.Publisher('waypoint_list', Int16MultiArray)
-    sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
-except rospy.ROSInterruptException: pass
-
 d = 0
 
 def read_csv(map_path):
@@ -41,7 +32,7 @@ def distance_between_neighbors(pt1,pt2):
 
 
 def make_space_dict():
-	data = read_csv('map1ex.txt')
+	data = read_csv('./map1ex.txt')
 
 	space={} #initialize the dictionary, representing thetraverable space of nodes
 
