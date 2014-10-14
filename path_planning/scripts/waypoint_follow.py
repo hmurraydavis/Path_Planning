@@ -96,9 +96,7 @@ def get_to_waypoint(pub):
         r.sleep()
 
 if __name__ == '__main__':
-    print 'hello there, little friend'
     try:
-        print 'run'
         rospy.init_node('robot_direct', anonymous=True)
         pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
         sub1 = rospy.Subscriber('particle', PoseStamped, calculate_heading_speed)
