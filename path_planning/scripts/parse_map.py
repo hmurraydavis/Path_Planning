@@ -1,11 +1,13 @@
+#!/usr/bin/env python
+
 #PARSE THE CSV, BINARY (0 OR 1), *.TXT MAP FILE:
-print 'test'
 import rospy
 import csv
 import pprint
 from std_msgs.msg import Int16MultiArray
 from nav_msgs.msg import OccupancyGrid
 global pub
+print 'test'
 
 try:
     print 'starting a node'
