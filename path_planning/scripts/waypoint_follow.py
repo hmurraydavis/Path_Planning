@@ -7,6 +7,7 @@ import tf
 import math
 import rospy
 from std_msgs.msg import String
+import parse_map
 from geometry_msgs.msg import Twist, Vector3, PoseStamped, PoseWithCovarianceStamped, PoseArray, Pose, Point, Quaternion
 #import parse_map
 
