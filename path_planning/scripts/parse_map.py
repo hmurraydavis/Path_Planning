@@ -32,6 +32,8 @@ def distance_between_neighbors(pt1,pt2):
 
 def make_space_dict():
 	data = read_csv('map1ex.txt')
+	#print 'data is: ', 
+	#pprint.pprint(data)
 
 	space={} #initialize the dictionary, representing thetraverable space of nodes
 
@@ -60,6 +62,7 @@ def make_space_dict():
 	return space
 
 def dijkstra(origin, goal,pub):
+    print 'in dijkstra init function'
     space=make_space_dict() #make map from file
     nodesVisited=set((origin,))
     node_dists={origin:0}
@@ -67,6 +70,7 @@ def dijkstra(origin, goal,pub):
     return dijkstraR(space, origin, goal, nodesVisited, node_dists, node_progressions,pub) 
 
 def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressions,pub):
+    print 'in DijkstraR function'
     if currentNode == goal:
         node_path = []
         end_of_path = currentNode
@@ -76,7 +80,19 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
 
         print 'you are winnerr'
         desired_path=list(reversed(node_path))
-        pub.publish(desired_path)
+        print 'desired path is: ',desired_path
+        print 'node path',list(reversed(node_path))
+        xdesired_paths=[]
+        ydesired_paths=[]
+        for node in desired_path:
+            xnode,ynode=node
+            xdesired_paths.append(xnode)
+            ydesired_paths.append(ynode)
+#        xdesired_paths=Int16MultiArray(xdesired_paths)
+        print 'x desired nodes: ',xdesired_paths
+        print 'ydesired_paths: ', ydesired_paths
+
+        #pub.publish(xdesired_paths)
         return desired_path
 
     for child in space[currentNode]:
@@ -111,6 +127,7 @@ def read_in_map(msg):
     OUTPUT: 
     **Writes laser scan data to the global variable: lazer_measurements"""
 
+    print 'read in map and in map read in function'
     global mapSpace
     pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
     
@@ -127,5 +144,6 @@ if __name__ == '__main__':
         #global pub
         pub = rospy.Publisher('waypoint_list', Int16MultiArray)
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
-        dijkstra((0,0),(1,1),pub) #TODO: make it the actual goal and starting location
+        print 'called dijkstra'
+        dijkstra((0,0),(3,4),pub) #TODO: make it the actual goal and starting location
     except rospy.ROSInterruptException: pass
