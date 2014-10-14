@@ -32,7 +32,7 @@ def distance_between_neighbors(pt1,pt2):
 
 
 def make_space_dict():
-	data = read_csv('./map1ex.txt')
+	data = read_csv('map1ex.txt')
 
 	space={} #initialize the dictionary, representing thetraverable space of nodes
 
