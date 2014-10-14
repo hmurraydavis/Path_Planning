@@ -135,16 +135,9 @@ def get_list_of_waypoints():
     dijkstra((0,0),(3,4),pub)
     
 
-#if __name__ == '__main__':
-#    '''Initializes ROS processes and controls the state of the robot once 
-#    indivigual behaviors yield controls
-#    INPUT: none
-#    OUTPUT: none'''
-#    try:
-#        rospy.init_node('robot_direct', anonymous=True)
-#        global pub
-#        pub = rospy.Publisher('waypoint_list', String)
-#        sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
-#        print 'called dijkstra'
-#        get_list_of_waypoints() #TODO: make it the actual goal and starting location
-#    except rospy.ROSInterruptException: pass
+if __name__ == '__main__':
+    '''Initializes ROS processes and controls the state of the robot once 
+    indivigual behaviors yield controls
+    INPUT: none
+    OUTPUT: none'''
+    startupSequence()
