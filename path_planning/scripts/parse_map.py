@@ -10,7 +10,7 @@ import time
 
 global pub
 d = 0
-
+j=0
 def read_csv(map_path):
     '''Opens and reads in CSV files. These represent the map of the
         world for the robot. 
@@ -82,7 +82,10 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
         print 'you are winnerr'
         desired_path=list(reversed(node_path))
         print 'desired path is: ',desired_path
-        pub.publish(str(desired_path))
+        while j<200:
+            global j
+            pub.publish(str(desired_path))
+            j=j+1
         return desired_path
 
     for child in space[currentNode]:
