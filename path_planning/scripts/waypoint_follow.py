@@ -8,7 +8,7 @@ import math
 import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist, Vector3, PoseStamped, PoseWithCovarianceStamped, PoseArray, Pose, Point, Quaternion
-import parse_map
+#import parse_map
 
 quaternion = -1000
 angle = 0
@@ -97,6 +97,7 @@ def get_to_waypoint(pub):
 if __name__ == '__main__':
     print 'hello there, little friend'
     try:
+        print 'run'
         rospy.init_node('robot_direct', anonymous=True)
         pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
         sub1 = rospy.Subscriber('particle', PoseStamped, calculate_heading_speed)
