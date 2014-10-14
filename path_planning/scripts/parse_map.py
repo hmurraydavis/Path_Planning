@@ -4,8 +4,9 @@
 import rospy
 import csv
 import pprint
-from std_msgs.msg import Int16MultiArray
+from std_msgs.msg import String, Int16MultiArray
 from nav_msgs.msg import OccupancyGrid
+import time
 
 global pub
 d = 0
@@ -91,8 +92,13 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
 #        xdesired_paths=Int16MultiArray(xdesired_paths)
         print 'x desired nodes: ',xdesired_paths
         print 'ydesired_paths: ', ydesired_paths
+#        time.sleep(10)
+#        print 'publishing!'
 
-        #pub.publish(xdesired_paths)
+
+        while 1:
+            pub.publish(str(desired_path))
+            
         return desired_path
 
     for child in space[currentNode]:
@@ -142,7 +148,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node('test', anonymous=True)
         #global pub
-        pub = rospy.Publisher('waypoint_list', Int16MultiArray)
+        pub = rospy.Publisher('waypoint_list', String)
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
         print 'called dijkstra'
         dijkstra((0,0),(3,4),pub) #TODO: make it the actual goal and starting location
