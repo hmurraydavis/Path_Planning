@@ -82,7 +82,8 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
         print 'you are winnerr'
         desired_path=list(reversed(node_path))
         print 'desired path is: ',desired_path
-        while j<200:
+        while j<9000000:
+            print 'hi'
             global j
             pub.publish(str(desired_path))
             j=j+1
