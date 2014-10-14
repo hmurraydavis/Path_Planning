@@ -1,12 +1,19 @@
------
 Summary and Objectives
 -----
-The goal for this roject was to develop code that would enable a root to plan a path through a traversable space. Idealy, this space would have obstacles in it. We chose to focus on an algorythmic approach 
+The goal for this roject was to develop code that would enable a root to plan a path through a traversable space. Idealy, this space would have obstacles in it. We chose to focus on a more algorythmically based approach as opposed to one which foccused on directing the physical robots to do things. While physical robots were involved, the main objective was to gain a deeper understanding of the core algorythms by implementing them. 
 
 -----
 Running and Installing Code
 -----
-Be sure to:
+First, clone the Path_Planning repo onto your local instalation of Ubuntu 12.04 with:
+```Shell
+git clone https://github.com/YOUR_GITHUB_USER_NAME/Path_Planning.git
+```
+Alternatively, clone the repository with SSH keys or Subversion! 
+
+Next, you'll need to establish symlinks between the working file system you just cloned and your catkin workspace. If you're new to ROS, the Catkin workspace handles running your ROS Packages. If you don't already have a Catkin workspace, a good guide to how to create one is {here}{https://sites.google.com/site/comprobofall14/home/howto/setting-up-your-environment}. 
+
+Once you have a Catkin workspace, or if you have one already, create symlinks between the catkin workspace and the repository. Symlinks effectively allow the same files to exist in two different locations on your computer. Create them with:
 ln -s path_to_your_github_repo/my_pf ~/catkin_ws/src
 ln -s path_to_your_github_repo/hector_slam ~/catkin_ws/src
 ln -s path_to_your_github_repo/geomtery ~/catkin_ws/src
