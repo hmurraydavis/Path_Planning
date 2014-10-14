@@ -2,6 +2,7 @@
 
 import csv
 import pprint
+from std_msgs.msg import Int16MultiArray
 d = 0
 
 def read_csv(map_path):
@@ -69,7 +70,9 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
             end_of_path = node_progressions.get(end_of_path, False)
 
         print 'you are winnerr'
-        return list(reversed(node_path))
+        desired_path=list(reversed(node_path))
+        pub.publish(desired_path)
+        return desired_path
 
     for child in space[currentNode]:
         if child not in nodesVisited: #if the edge hasn't been checked, check it
@@ -95,4 +98,28 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
     print 'closest node is: ',closest_node
     return dijkstraR(space, closest_node, goal, nodesVisited, node_dists, node_progressions)
 
-print dijkstra((0,0), (0,4))
+#print dijkstra((0,0), (0,4))
+
+def read_in_map(msg):
+    """ Processes data from the laser scanner and makes it available to other functions
+    INPUT: The data from a single laser scan_received
+    OUTPUT: 
+    **Writes laser scan data to the global variable: lazer_measurements"""
+
+    global mapSpace
+    pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
+    
+    mapSpace=msg
+
+
+if __name__ == '__main__':
+    '''Initializes ROS processes and controls the state of the robot once 
+    indivigual behaviors yield controls
+    INPUT: none
+    OUTPUT: none'''
+    try:
+        rospy.init_node('waypoint_list', anonymous=True)
+        global pub = rospy.Publisher('waypoint_list', Int16MultiArray)
+        sub = rospy.Subscriber('map', map, read_in_map) #TODO: change topic to be that of the map
+        break
+    except rospy.ROSInterruptException: pass
