@@ -14,7 +14,7 @@ angle = 0
 index = 0
 speed = 0
 
-print 'hi1'
+print 'hi'
 
 def start():
     print 'hi'
@@ -22,6 +22,7 @@ def start():
     return list_of_way_points
 
 way_points = start()
+
 print way_points
 
 list_of_way_points = [(1,1)]

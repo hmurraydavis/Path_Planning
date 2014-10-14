@@ -1,15 +1,16 @@
 #PARSE THE CSV, BINARY (0 OR 1), *.TXT MAP FILE:
 print 'test'
+import rospy
 import csv
 import pprint
 from std_msgs.msg import Int16MultiArray
-import rospy
 from nav_msgs.msg import OccupancyGrid
+global pub
 
 try:
-    print 'starting node'
+    print 'starting a node'
     rospy.init_node('waypoint_list', anonymous=True)
-    print 'started node'
+    print 'started a node'
     global pub
     pub = rospy.Publisher('waypoint_list', Int16MultiArray)
     sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
@@ -130,10 +131,10 @@ if __name__ == '__main__':
     INPUT: none
     OUTPUT: none'''
     try:
-        print 'starting node'
+        print 'starting b node'
         rospy.init_node('test', anonymous=True)
-        print 'started node'
-        global pub
+        print 'started b node'
+        #global pub
         pub = rospy.Publisher('waypoint_list', Int16MultiArray)
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
     except rospy.ROSInterruptException: pass
