@@ -6,9 +6,8 @@ import csv
 import pprint
 from std_msgs.msg import Int16MultiArray
 from nav_msgs.msg import OccupancyGrid
-global pub
-print 'test'
 
+global pub
 d = 0
 
 def read_csv(map_path):
@@ -60,14 +59,14 @@ def make_space_dict():
 		    space[(x,y)] = neighbors
 	return space
 
-def dijkstra(origin, goal):
+def dijkstra(origin, goal,pub):
     space=make_space_dict() #make map from file
     nodesVisited=set((origin,))
     node_dists={origin:0}
     node_progressions={}
     return dijkstraR(space, origin, goal, nodesVisited, node_dists, node_progressions) 
 
-def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressions):
+def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressions,pub):
     if currentNode == goal:
         node_path = []
         end_of_path = currentNode
@@ -124,9 +123,7 @@ if __name__ == '__main__':
     INPUT: none
     OUTPUT: none'''
     try:
-        print 'starting b node'
         rospy.init_node('test', anonymous=True)
-        print 'started b node'
         #global pub
         pub = rospy.Publisher('waypoint_list', Int16MultiArray)
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
