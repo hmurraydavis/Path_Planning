@@ -6,6 +6,15 @@ from std_msgs.msg import Int16MultiArray
 import rospy
 from nav_msgs.msg import OccupancyGrid
 
+try:
+    print 'starting node'
+    rospy.init_node('waypoint_list', anonymous=True)
+    print 'started node'
+    global pub
+    pub = rospy.Publisher('waypoint_list', Int16MultiArray)
+    sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
+except rospy.ROSInterruptException: pass
+
 d = 0
 
 def read_csv(map_path):
@@ -122,7 +131,7 @@ if __name__ == '__main__':
     OUTPUT: none'''
     try:
         print 'starting node'
-        rospy.init_node('waypoint_list', anonymous=True)
+        rospy.init_node('test', anonymous=True)
         print 'started node'
         global pub
         pub = rospy.Publisher('waypoint_list', Int16MultiArray)
