@@ -126,6 +126,7 @@ def read_in_map(msg):
     mapSpace=nparray
     print 'map data from slam is: '
     pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
+    #TODO: get actual map data...Paul?
     print 'map data printed'
     mapSpace=msg
     
