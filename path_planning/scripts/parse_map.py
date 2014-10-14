@@ -141,7 +141,7 @@ def startupSequence():
 
 def get_list_of_waypoints():
     startupSequence()
-    dijkstra((0,0),(3,4),pub)
+    #dijkstra((0,0),(3,4),pub)
     
 
 if __name__ == '__main__':
