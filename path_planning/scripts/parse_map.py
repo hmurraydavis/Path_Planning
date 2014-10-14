@@ -124,8 +124,9 @@ def read_in_map(msg):
     nparray.resize(512,512)
     #print msg
     mapSpace=nparray
-    #pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
-    
+    print 'map data from slam is: '
+    pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
+    print 'map data printed'
     mapSpace=msg
     
 def startupSequence():
@@ -136,7 +137,7 @@ def startupSequence():
         pub = rospy.Publisher('waypoint_list', String)
         print 'ending waypoint list'
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
-        print 'called dijkstra'
+        print 'subscribed to the map'
     except rospy.ROSInterruptException: pass
 
 def get_list_of_waypoints():
