@@ -35,12 +35,15 @@ The robot keeps track of its current waypoint. When it detects that it is close 
 ### Design decision
 Describe a design decision you had to make when working on your project and what you ultimately did (and why)?  These design decisions could be particular choices for how you implemented some part of an algorithm or perhaps a decision regarding which of two external packages to use in your project.
 
-### How did you structure your code?
+### Code Structure
 
-The code structure was largely object
+We imported external packages.
 
-### What if any challenges did you face along the way?
+### Challenges
 
-### What would you do to improve your project if you had more time?
+We wished we had allocated more time into integrating the code, because during that process, we came across several bugs, which were larger problems than we had expected. For instance, we wanted our path planning code to publish to a node, but to be able to publish to a node, it needed to be casted into a select amount of data types. We had originally tried to publish an array of tuples of waypoints but spent hours looking through documentation and debugging to get waypoints published. In the end, we decided on publishing a string of etc.
+
+### Future
+If we had more time, we would visualize the path of the robot. At our project's current stage, we simply wanted to integrate our code.
 
 ### Did you learn any interesting lessons for future robotic programming projects?  These could relate to working on robotics projects in teams, working on more open-ended (and longer term) problems, or any other relevant topic.
