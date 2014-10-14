@@ -37,7 +37,7 @@ Describe a design decision you had to make when working on your project and what
 
 ### Code Structure
 
-We imported external packages.
+We've added combined the scripts that we worked on into one directory. In addition, we established that one script would import the other and call its methods. This script was the path follower, which imported the path planner. Due to this establishment, we were able to gather information from the path planner before calling the path follower. This code flow made sense logically. At one point, we were considering having the path planner publish to a node that the path follower would subscribe to. However, the path planner takes time to run, which would likely cause problems in following waypoints for the path follower.
 
 ### Challenges
 
@@ -46,4 +46,7 @@ We wished we had allocated more time into integrating the code, because during t
 ### Future
 If we had more time, we would visualize the path of the robot. At our project's current stage, we simply wanted to integrate our code.
 
-### Did you learn any interesting lessons for future robotic programming projects?  These could relate to working on robotics projects in teams, working on more open-ended (and longer term) problems, or any other relevant topic.
+### Interesting Lessons
+
+We found that it is important to dedicate more time towards integration in future robotic programming projects.
+
