@@ -1,0 +1,1 @@
+roslaunch neato_2dnav amcl_builtin.launch map_file:='rospack find neato_2dnav'/maps/newmap.yaml
