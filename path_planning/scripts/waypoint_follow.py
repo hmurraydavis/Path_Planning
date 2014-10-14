@@ -18,7 +18,7 @@ print 'hi'
 
 def start():
     print 'hi'
-    list_of_way_points = parse_map.dijkstra((0,0),(1,2))
+    list_of_way_points = parse_map.get_list_of_waypoints()
     return list_of_way_points
 
 way_points = start()

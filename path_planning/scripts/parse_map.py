@@ -4,8 +4,9 @@
 import rospy
 import csv
 import pprint
-from std_msgs.msg import Int16MultiArray
+from std_msgs.msg import String, Int16MultiArray
 from nav_msgs.msg import OccupancyGrid
+import time
 
 global pub
 d = 0
@@ -81,18 +82,7 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
         print 'you are winnerr'
         desired_path=list(reversed(node_path))
         print 'desired path is: ',desired_path
-        print 'node path',list(reversed(node_path))
-        xdesired_paths=[]
-        ydesired_paths=[]
-        for node in desired_path:
-            xnode,ynode=node
-            xdesired_paths.append(xnode)
-            ydesired_paths.append(ynode)
-#        xdesired_paths=Int16MultiArray(xdesired_paths)
-        print 'x desired nodes: ',xdesired_paths
-        print 'ydesired_paths: ', ydesired_paths
-
-        #pub.publish(xdesired_paths)
+        pub.publish(str(desired_path))
         return desired_path
 
     for child in space[currentNode]:
@@ -119,8 +109,6 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
     print 'closest node is: ',closest_node
     return dijkstraR(space, closest_node, goal, nodesVisited, node_dists, node_progressions,pub)
 
-#print dijkstra((0,0), (0,4))
-
 def read_in_map(msg):
     """ Processes data from the laser scanner and makes it available to other functions
     INPUT: The data from a single laser scan_received
@@ -132,7 +120,20 @@ def read_in_map(msg):
     pprint.pprint(msg) #TODO: Do something with the message map gotten from jasper's code
     
     mapSpace=msg
+    
+def startupSequence():
+    try:
+#        rospy.init_node('test', anonymous=True)
+        global pub
+        pub = rospy.Publisher('waypoint_list', String)
+        sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
+        print 'called dijkstra'
+    except rospy.ROSInterruptException: pass
 
+def get_list_of_waypoints():
+    startupSequence()
+    dijkstra((0,0),(3,4),pub)
+    
 
 if __name__ == '__main__':
     '''Initializes ROS processes and controls the state of the robot once 
@@ -141,9 +142,9 @@ if __name__ == '__main__':
     OUTPUT: none'''
     try:
         rospy.init_node('test', anonymous=True)
-        #global pub
-        pub = rospy.Publisher('waypoint_list', Int16MultiArray)
+        global pub
+        pub = rospy.Publisher('waypoint_list', String)
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
         print 'called dijkstra'
-        dijkstra((0,0),(3,4),pub) #TODO: make it the actual goal and starting location
+        get_list_of_waypoints() #TODO: make it the actual goal and starting location
     except rospy.ROSInterruptException: pass
