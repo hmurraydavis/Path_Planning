@@ -2,6 +2,7 @@
 # Path_Planning Team
 # Jasper Chen
 
+import re
 import tf
 import math
 import rospy
@@ -26,6 +27,10 @@ way_points = start()
 print way_points
 
 list_of_way_points = [(1,1)]
+
+def parse_waypoint_list(msg):
+    m = re.findall('\((.*?)\)',msg)
+    print m
 
 def calculate_heading_speed(msg):
     """ Subscribes to /particle node, which is the mean of all particles produced by the particle filter.
@@ -93,6 +98,7 @@ if __name__ == '__main__':
     try:
         rospy.init_node('robot_direct', anonymous=True)
         pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
-        sub = rospy.Subscriber('particle', PoseStamped, calculate_heading_speed)
+        sub1 = rospy.Subscriber('particle', PoseStamped, calculate_heading_speed)
+        sub2 = rospy.Subscriber('waypoint_list', String, parse_waypoint_list)
         get_to_waypoint(pub)
     except rospy.ROSInterruptException: pass
