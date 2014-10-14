@@ -95,9 +95,7 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
 #        time.sleep(10)
 #        print 'publishing!'
 
-
-        while 1:
-            pub.publish(str(desired_path))
+        pub.publish(str(desired_path))
             
         return desired_path
 
