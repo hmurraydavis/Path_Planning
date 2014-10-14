@@ -82,21 +82,7 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
         print 'you are winnerr'
         desired_path=list(reversed(node_path))
         print 'desired path is: ',desired_path
-        print 'node path',list(reversed(node_path))
-        xdesired_paths=[]
-        ydesired_paths=[]
-        for node in desired_path:
-            xnode,ynode=node
-            xdesired_paths.append(xnode)
-            ydesired_paths.append(ynode)
-#        xdesired_paths=Int16MultiArray(xdesired_paths)
-        print 'x desired nodes: ',xdesired_paths
-        print 'ydesired_paths: ', ydesired_paths
-#        time.sleep(10)
-#        print 'publishing!'
-
         pub.publish(str(desired_path))
-            
         return desired_path
 
     for child in space[currentNode]:
