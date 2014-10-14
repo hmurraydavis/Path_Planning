@@ -7,11 +7,22 @@ import math
 import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist, Vector3, PoseStamped, PoseWithCovarianceStamped, PoseArray, Pose, Point, Quaternion
+import parse_map
 
 quaternion = -1000
 angle = 0
 index = 0
 speed = 0
+
+print 'hi1'
+
+def start():
+    print 'hi'
+    list_of_way_points = parse_map.dijkstra((0,0),(1,2))
+    return list_of_way_points
+
+way_points = start()
+print way_points
 
 list_of_way_points = [(1,1)]
 

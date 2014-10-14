@@ -14,7 +14,7 @@ dist_target = 0
 index = 0
 speed = 0
 
-list_of_waypoints = [(1,1)]
+list_of_waypoints = [(1,0)]
 
 def transform_quaternion_to_angle(msg):
     """ Processes data from type Quaternion and returns current direction of robot in degrees from range 0 to 360 degrees"""
@@ -41,7 +41,7 @@ def calculate_heading(msg,index):
 
     angle_target = math.atan2(delta_y,delta_x)*180/math.pi   
 
-    return heading
+    return angle_target
 
 def calculate_heading_speed(msg):
     """ Subscribes to /particle node, which publishes the mean of all particles produced by the robot particle filter.
@@ -55,6 +55,9 @@ def calculate_heading_speed(msg):
     global list_of_waypoints
     global speed
 
+    x_pos = msg.pose.position.x
+    y_pos = msg.pose.position.y
+
     angle_current = transform_quaternion_to_angle(msg)
 
     if index >= len(list_of_waypoints): #stop when last waypoint is completed
@@ -63,7 +66,7 @@ def calculate_heading_speed(msg):
 
     else:
         speed = .05
-        angle_target = calculate_heading(x_pos,y_pos,index)
+        angle_target = calculate_heading(msg,index)
 
         if angle_target < 0:
             angle_target = 360 + angle_target
@@ -84,7 +87,7 @@ def calculate_heading_speed(msg):
         if dist_target < 0.5:
             index += 1
 
-    return dist_target, angle
+    return index
 
 def navigate_to_waypoint(pub):
     """ publishes to /cmd_vel node of type geometry_msgs/Twist"""
@@ -99,5 +102,6 @@ if __name__ == '__main__':
         rospy.init_node('robot_direct', anonymous=True)
         pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
         sub = rospy.Subscriber('particle', PoseStamped, calculate_heading_speed)
+        #sub1 = rospy.Subscriber('')
         navigate_to_waypoint(pub)
     except rospy.ROSInterruptException: pass

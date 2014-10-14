@@ -5,16 +5,21 @@
 import tf
 import math
 import rospy
+import parse_map
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist, Vector3, PoseStamped, PoseWithCovarianceStamped, PoseArray, Pose, Point, Quaternion
 
+def __init__():
+    list_of_way_points = parse_map.dijkstra((0,0),(1,2))
+    print list_of_way_points
+
 quaternion = -1000
 angle = 0
-dist_target = 0
 index = 0
 speed = 0
 
-list_of_way_points = [(1,1)]
+#list_of_way_points = [(1,1)]
+
 
 def calculate_heading_speed(msg):
     """ Subscribes to /particle node, which is the mean of all particles produced by the particle filter.
@@ -24,7 +29,6 @@ def calculate_heading_speed(msg):
 
     global index
     global angle
-    #global dist_target
     global list_of_way_points
     global speed
 
@@ -47,7 +51,7 @@ def calculate_heading_speed(msg):
         speed = 0
 
     else:
-        speed = .05
+        speed = .1
         delta_y = list_of_way_points[index][1] - y_pos
         delta_x = list_of_way_points[index][0] - x_pos
         dist_target = math.sqrt((list_of_way_points[index][0]-x_pos) ** 2 + (list_of_way_points[index][1]-y_pos) ** 2)
@@ -70,7 +74,7 @@ def calculate_heading_speed(msg):
         if dist_target < 0.5:
             index += 1
 
-    return dist_target, angle
+    return index
 
 def get_to_waypoint(pub):
     r = rospy.Rate(10)
