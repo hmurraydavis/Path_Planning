@@ -64,7 +64,7 @@ def dijkstra(origin, goal,pub):
     nodesVisited=set((origin,))
     node_dists={origin:0}
     node_progressions={}
-    return dijkstraR(space, origin, goal, nodesVisited, node_dists, node_progressions) 
+    return dijkstraR(space, origin, goal, nodesVisited, node_dists, node_progressions,pub) 
 
 def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressions,pub):
     if currentNode == goal:
@@ -101,7 +101,7 @@ def dijkstraR(space, currentNode, goal, nodesVisited, node_dists, node_progressi
 
     #Recurse over the children search front, starting with the current shortest path
     print 'closest node is: ',closest_node
-    return dijkstraR(space, closest_node, goal, nodesVisited, node_dists, node_progressions)
+    return dijkstraR(space, closest_node, goal, nodesVisited, node_dists, node_progressions,pub)
 
 #print dijkstra((0,0), (0,4))
 
@@ -127,4 +127,5 @@ if __name__ == '__main__':
         #global pub
         pub = rospy.Publisher('waypoint_list', Int16MultiArray)
         sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
+        dijkstra((0,0),(1,1),pub) #TODO: make it the actual goal and starting location
     except rospy.ROSInterruptException: pass
