@@ -4,7 +4,7 @@ The goal for this roject was to develop code that would enable a root to plan a 
 
 This project was the second of four progressively more involved robotics projects in Computational Robotics at Franklin W. Olin College of Engineering and was developed over 3.5 weeks. Projects focused on particle filtering, mapping, multi-agent systems, and path planning.
 
-For this particurlar project, the algorythms behing and for path planning and localization were explored. [SLAM](http://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping) mapping was used to create a map or "occupancy grid" describing the area around the robot. This occupancy grid was then used as the innput map for finding the shortest path from the robot's current location to a specified goal using [Dijkstra's Algorythm](http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm). Running Dijkstra's Algorythm yielded a list of waypoints. This list of waypoints was then traversed by the robot in the physical world. To obtain the physical location of the robot while traversing waypoints, the robot's location is determined from SLAM mapping compared to the initially generated map as it traverses the waypoints.
+For this particurlar project, the algorythms behing and for path planning and localization were explored. [SLAM](http://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping) mapping was used to create a map or "occupancy grid" describing the area around the robot. This occupancy grid was then used as the innput map for finding the shortest path from the robot's current location to a specified goal using [Dijkstra's Algorithm](http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm). Running Dijkstra's Algorythm yielded a list of waypoints. This list of waypoints was then traversed by the robot in the physical world. To obtain the physical location of the robot while traversing waypoints, the robot's location is determined from SLAM mapping compared to the initially generated map as it traverses the waypoints.
 
 -----
 Running and Installing Code
@@ -24,7 +24,7 @@ ln -s path_to_your_github_repo/hector_slam ~/catkin_ws/src
 ln -s path_to_your_github_repo/geomtery ~/catkin_ws/src
 ```
 <!---
-/home/jasper/comprobo2014/src  # Jasper, do we really need this?
+/home/jasper/comprobo2014/src  # Jasper, do we really need this? No, it was my own way to find my path quickly.
 -->
 
 Now, it's time to make the catkin workspace so we can run the code with ROS!
