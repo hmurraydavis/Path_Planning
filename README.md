@@ -21,7 +21,7 @@ One problem with Dijkstra's Algorythm is that it is computationally quite comple
 Space={
     (x1,y1):{
         (x2,y2):1,
-        (x3,y3):1.43,
+        (x3,y3):1.43
     }
     (x2,y2):{
         (x3,y3):1.43,
@@ -51,6 +51,8 @@ The robot keeps track of its current waypoint. When it detects that it is close 
 ### Design Decision/ Code Structure
 
 We've added combined the scripts that we worked on into one directory. In addition, we established that one script would import the other and call its methods. This script was the path follower, which imported the path planner. Due to this establishment, we were able to gather information from the path planner before calling the path follower. This code flow made sense logically. At one point, we were considering having the path planner publish to a node that the path follower would subscribe to. However, the path planner takes time to run, which would likely cause problems in following waypoints for the path follower.
+
+Our final, integrated system behaved as distinct parts, all communicating intelligently over ROS topics. The mapping first occured and was directed by code in the file waypoint_follow.py. From here, parse_map.py was imported into waypoint_follow.py. When mapping was complete, waypoint_follow.py called a small, helper function in parse_map.py. This function was responsible for making sure Dijkstra's Algorythm had a map to use, that it planned a path, and that the a resulting list of waypoints was created. To get the list of waypoints from the path planning section of the code over to the section responsible for moving through waypoints, a string of format: [(x0,y0),(x1,y1),(x2,y2),...(xn,yn)] was written to the ROS topic waypoint_list. This could have been any topic name, so long as it was consistant. The code to traverse waypoints then parsed the received string with a regular expression. 
 
 ### Challenges
 
