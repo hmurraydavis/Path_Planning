@@ -41,7 +41,7 @@ def make_space_dict():
 	#parse the resulting list of tuples of ints (effectively a 2d array)
 	for y, x_items in enumerate(data):
 	    for x, map_value_for_square in enumerate(x_items):
-		if (map_value_for_square>0): #1 is traverseable, 0 is not
+		if (map_value_for_square<1): #0 is traverseable, 1 is not
 		    neighbors={}
 		    potential_neighbors=[(x+1,y),
 					 (x-1,y),
@@ -130,19 +130,56 @@ def read_in_map(msg):
     print 'map data printed'
     mapSpace=msg
     
+def read_in_laser2():
+    #get the map up: 
+    rospy.wait_for_service("static_map")
+    static_map = rospy.ServiceProxy("static_map", GetMap)
+    print 'has map yo'
+    try:
+        map = static_map().map
+    except:
+        print "error receiving map"
+	
+    mapI=self.map.data
+    print 'mapI is: ', mapI		
+    for point in mapI:
+        if point >0: #case of setting occupied cell to not traversable
+            point=1
+        if point <0: #case of setting unknown cell to occupied
+            point=1 
+            	
+	# make the map a 2D thing from it's prior, row-major format:
+	for i in range(self.map.info.width):
+			for j in range(self.map.info.height):
+				# occupancy grids are stored in row major order, if you go through this right, you might be able to use curr
+				ind = i + j*self.map.info.width
+				X[curr,0] = float(i)
+				X[curr,1] = float(j)
+				curr += 1
+				
+    print 'map is: ',
+    pprint.pprint
+			#0 is traverseable, 1 is not
+#			0=un occ
+#			-1 unknown 
+			#0 or greater, occupied
+    
 def startupSequence():
     try:
         rospy.init_node('robot_direct', anonymous=True)
         global pub
         print 'started waypoint list'
         pub = rospy.Publisher('waypoint_list', String)
-        print 'ending waypoint list'
-        sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
-        print 'subscribed to the map'
+        #print 'ending waypoint list'
+        #sub = rospy.Subscriber('map', OccupancyGrid, read_in_map) #TODO: change topic to be that of the map
+        #print 'subscribed to the map'
     except rospy.ROSInterruptException: pass
 
 def get_list_of_waypoints():
     startupSequence()
+    print 'startup sequence completed!'
+    read_in_laser2()
+    print 'read in lazer 2 completed!'
     #dijkstra((0,0),(3,4),pub)
     
 
