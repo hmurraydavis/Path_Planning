@@ -67,30 +67,30 @@ We found that it is important to dedicate more time towards integration in futur
 Running and Installing Code
 -----
 First, clone the Path_Planning repo onto your local instalation of Ubuntu 12.04 with:
-```Shell
-git clone https://github.com/YOUR_GITHUB_USER_NAME/Path_Planning.git
+```bash
+$ git clone https://github.com/YOUR_GITHUB_USER_NAME/Path_Planning.git
 ```
 Alternatively, clone the repository with SSH keys or Subversion! 
 
 Next, you'll need to establish symlinks between the working file system you just cloned and your catkin workspace. If you're new to ROS, the Catkin workspace handles running your ROS Packages. If you don't already have a Catkin workspace, a good guide to how to create one is [here](https://sites.google.com/site/comprobofall14/home/howto/setting-up-your-environment). 
 
 Once you have a Catkin workspace, or if you have one already, create symlinks between the catkin workspace and the repository. Symlinks effectively allow the same files to exist in two different locations on your computer. Create them with:
-```Shell
-ln -s path_to_your_github_repo/my_pf ~/catkin_ws/src
-ln -s path_to_your_github_repo/hector_slam ~/catkin_ws/src
-ln -s path_to_your_github_repo/geomtery ~/catkin_ws/src
+```bash
+$ ln -s path_to_your_github_repo/my_pf ~/catkin_ws/src
+$ ln -s path_to_your_github_repo/hector_slam ~/catkin_ws/src
+$ ln -s path_to_your_github_repo/geomtery ~/catkin_ws/src
 ```
 
 Now, it's time to make the catkin workspace so we can run the code with ROS!
-```Shell
-cd ~/catkin_ws/src
-catkin_make
-catkin_make install
+```bash
+$ cd ~/catkin_ws/src
+$ catkin_make
+$ catkin_make install
 ```
 
 To use localize robot on map:
 ```bash
-roslaunch neato_2dnav amcl_builtin.launch map_file:=/home/jasper/catkin_ws/src/hector_slam/hector_mapping/maps/newmap.yaml ($PATHOFYAMLFILE)
+$ roslaunch neato_2dnav amcl_builtin.launch map_file:=/home/jasper/catkin_ws/src/hector_slam/hector_mapping/maps/newmap.yaml ($PATHOFYAMLFILE)
 ```
 
 Set frame to map on Rviz.
